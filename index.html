@@ -156,6 +156,18 @@ footer a{color:var(--ink-2);display:inline-block;padding:12px 0;margin:-12px 0}
   .hero-inner{display:grid;place-items:center}
   .core-box{width:min(42vw,480px)}
 }
+/* memory: the brain of a demo memory, flat, drawn only on input */
+.brain-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);overflow:hidden}
+#brain{display:block;width:100%;aspect-ratio:7/4;min-height:420px;max-height:640px;cursor:pointer;touch-action:pan-y;
+  -webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+#brain:focus-visible{outline:2px solid #cfe0ff;outline-offset:-4px;border-radius:calc(var(--radius) - 2px)}
+@media (max-width:699px){#brain{aspect-ratio:4/5;min-height:380px;max-height:540px}}
+html:not(.js) .brain-frame{display:none}
+.brain-alt{margin-top:18px;color:var(--ink-2);font-size:.95rem}
+.brain-alt summary{display:list-item;width:fit-content;padding:10px 0;cursor:pointer;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.brain-alt p{margin:8px 0 12px;max-width:60ch}
+.brain-alt ul{margin:0;padding:0 0 0 18px;display:grid;gap:8px;max-width:80ch}
+.brain-alt b{font-weight:500;color:var(--ink)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
@@ -274,6 +286,31 @@ footer a{color:var(--ink-2);display:inline-block;padding:12px 0;margin:-12px 0}
       <p class="note reveal" style="--d:3">Free to start: a free Gemini key is all you need.</p>
     </div>
   </section>
+
+  <section id="memory" aria-labelledby="memory-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">Memory</p>
+      <h2 id="memory-title" class="reveal">Everything you tell me, connected.</h2>
+      <p class="sub reveal" style="--d:1">Each dot is something I remember. Drag to turn it, click a dot to look inside.</p>
+      <div class="brain-frame">
+        <canvas id="brain" tabindex="0" role="img" aria-label="A 3D map of an example memory: 112 notes shown as dots, coloured by topic and joined by 263 links. Bigger dots link to more notes. Drag or use the arrow keys to turn it. Click into it to zoom with the scroll wheel, and press Escape to let go. Click a dot to look inside that note. A text version follows."></canvas>
+      </div>
+      <details class="brain-alt">
+        <summary>Read it as a list</summary>
+        <p>An example memory for a made-up person, Sam: 112 notes in 7 topics, joined by 263 links. Each topic and its notes, most linked first.</p>
+        <ul>
+        <li><b>Work</b>, 26 notes: budget review, answer first, client hollis, slack etiquette, customer survey, q3 owners list, weekly report, client draper, hiring plan, invoice process, meeting notes style, pitch deck, product launch, quarterly goals, renewal dates, travel policy, vendor contracts, expense rules, friday deadline, pricing notes, sales pipeline, team offsite, conference talk, office move, board meeting prep, reporting tools.</li>
+        <li><b>About you</b>, 18 notes: coffee order, podcast picks, birthday june, how sam works, no calls after six, gift ideas, prefers short answers, likes lists, mornings deep work, shoe size, favourite authors, running goal, dislikes jargon, learning spanish, reads on kindle, skims email, time zone, writing voice.</li>
+        <li><b>The team</b>, 16 notes: jordan finance, team birthdays, priya engineering, contractor list, team values, escalation path, leave calendar, maya design lead, onboarding checklist, standup time, hiring panel, leo sales, one on ones, praise in public, review cycle, who approves spend.</li>
+        <li><b>Home and money</b>, 18 notes: emergency fund, mortgage renewal, subscriptions, utility bills, monthly budget, school run, tax documents, babysitter, kids activities, recycling day, car service, college fund, family calendar, grocery list, holiday plans, house repairs, insurance policies, savings goal.</li>
+        <li><b>Health</b>, 12 notes: water goal, annual checkup, dentist march, meal prep, sleep target, step count, stretching routine, allergies, gym schedule, physio exercises, running plan, vitamins.</li>
+        <li><b>Side projects</b>, 12 notes: blog drafts, photo archive, podcast idea, woodworking bench, bird list, guitar practice, novel outline, trail map, garden beds, home server, recipe book, chess openings.</li>
+        <li><b>Learning</b>, 10 notes: negotiation notes, excel tricks, memory palace, reading list, sketching, typing speed, course finance, history books, public speaking, spanish lessons.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+  <script type="application/json" id="brain-data">{"topics":["Work","About you","The team","Home and money","Health","Side projects","Learning"],"nodes":[["allergies",4],["annual-checkup",4],["answer-first",0],["babysitter",3],["bird-list",5],["birthday-june",1],["blog-drafts",5],["board-meeting-prep",0],["budget-review",0],["car-service",3],["chess-openings",5],["client-draper",0],["client-hollis",0],["coffee-order",1],["college-fund",3],["conference-talk",0],["contractor-list",2],["course-finance",6],["customer-survey",0],["dentist-march",4],["dislikes-jargon",1],["emergency-fund",3],["escalation-path",2],["excel-tricks",6],["expense-rules",0],["family-calendar",3],["favourite-authors",1],["friday-deadline",0],["garden-beds",5],["gift-ideas",1],["grocery-list",3],["guitar-practice",5],["gym-schedule",4],["hiring-panel",2],["hiring-plan",0],["history-books",6],["holiday-plans",3],["home-server",5],["house-repairs",3],["how-sam-works",1],["insurance-policies",3],["invoice-process",0],["jordan-finance",2],["kids-activities",3],["learning-spanish",1],["leave-calendar",2],["leo-sales",2],["likes-lists",1],["maya-design-lead",2],["meal-prep",4],["meeting-notes-style",0],["memory-palace",6],["monthly-budget",3],["mornings-deep-work",1],["mortgage-renewal",3],["negotiation-notes",6],["no-calls-after-six",1],["novel-outline",5],["office-move",0],["onboarding-checklist",2],["one-on-ones",2],["photo-archive",5],["physio-exercises",4],["pitch-deck",0],["podcast-idea",5],["podcast-picks",1],["praise-in-public",2],["prefers-short-answers",1],["pricing-notes",0],["priya-engineering",2],["product-launch",0],["public-speaking",6],["q3-owners-list",0],["quarterly-goals",0],["reading-list",6],["reads-on-kindle",1],["recipe-book",5],["recycling-day",3],["renewal-dates",0],["reporting-tools",0],["review-cycle",2],["running-goal",1],["running-plan",4],["sales-pipeline",0],["savings-goal",3],["school-run",3],["shoe-size",1],["sketching",6],["skims-email",1],["slack-etiquette",0],["sleep-target",4],["spanish-lessons",6],["standup-time",2],["step-count",4],["stretching-routine",4],["subscriptions",3],["tax-documents",3],["team-birthdays",2],["team-offsite",0],["team-values",2],["time-zone",1],["trail-map",5],["travel-policy",0],["typing-speed",6],["utility-bills",3],["vendor-contracts",0],["vitamins",4],["water-goal",4],["weekly-report",0],["who-approves-spend",2],["woodworking-bench",5],["writing-voice",1]],"edges":[[0,1],[0,16],[0,82],[1,32],[1,62],[1,94],[1,107],[2,7],[2,39],[2,41],[2,73],[2,78],[2,102],[2,108],[3,40],[3,52],[3,54],[3,85],[4,28],[4,31],[4,37],[4,57],[4,61],[4,110],[5,13],[5,39],[5,44],[5,53],[5,81],[5,86],[5,107],[6,9],[6,28],[6,49],[6,57],[6,64],[6,76],[6,101],[7,73],[8,11],[8,15],[8,19],[8,41],[8,50],[8,77],[8,78],[8,102],[9,43],[9,85],[10,37],[10,61],[10,110],[11,12],[11,34],[11,50],[11,98],[12,18],[12,27],[12,63],[12,70],[12,72],[12,102],[13,23],[13,29],[13,53],[13,65],[13,67],[13,88],[13,100],[14,54],[14,77],[14,104],[15,70],[15,72],[16,33],[16,45],[16,80],[16,92],[16,97],[17,35],[17,55],[17,87],[18,27],[18,29],[18,41],[18,98],[18,105],[19,49],[19,62],[19,90],[19,93],[20,39],[20,53],[20,86],[21,38],[21,54],[21,84],[21,93],[21,96],[21,99],[21,104],[22,45],[22,59],[22,66],[22,69],[22,99],[23,51],[23,55],[23,91],[24,58],[24,63],[24,83],[24,102],[25,69],[25,95],[25,104],[26,39],[26,65],[26,67],[26,111],[27,68],[27,108],[28,31],[28,101],[29,47],[29,65],[29,67],[29,86],[30,84],[30,96],[30,105],[31,57],[31,64],[31,95],[31,110],[32,73],[32,93],[33,59],[33,69],[33,80],[34,68],[34,70],[34,72],[34,89],[35,51],[35,87],[36,77],[36,95],[36,96],[37,64],[37,110],[38,54],[39,65],[39,67],[39,88],[40,54],[41,73],[41,89],[42,45],[42,48],[42,59],[42,65],[42,69],[42,97],[42,99],[42,108],[42,109],[43,52],[43,85],[43,95],[44,56],[44,100],[45,97],[45,99],[46,48],[46,60],[46,69],[46,73],[47,66],[47,67],[47,75],[47,100],[48,66],[48,81],[48,97],[49,62],[49,92],[49,106],[50,68],[50,70],[50,72],[51,74],[51,103],[52,77],[52,95],[52,106],[53,56],[53,81],[54,104],[55,91],[55,97],[55,103],[56,75],[56,78],[56,86],[56,88],[56,111],[57,64],[57,101],[57,110],[58,89],[58,105],[59,60],[59,92],[60,87],[60,92],[61,64],[61,76],[61,89],[61,101],[61,110],[63,79],[63,83],[63,89],[64,76],[64,101],[65,75],[65,81],[65,86],[66,80],[67,111],[68,70],[69,92],[69,97],[71,74],[71,91],[71,103],[72,83],[72,108],[74,87],[74,103],[76,107],[78,89],[78,108],[80,97],[82,94],[82,107],[83,105],[85,96],[85,108],[89,102],[90,93],[90,94],[90,106],[90,107],[94,107],[95,104],[96,104],[97,99],[97,109],[98,99],[98,105],[101,110]]}</script>
 
   <section class="closing" aria-labelledby="close-title">
     <div class="wrap">
@@ -416,6 +453,424 @@ footer a{color:var(--ink-2);display:inline-block;padding:12px 0;margin:-12px 0}
   if (reduce.addEventListener) reduce.addEventListener("change", update);
   draw(0);
   update();
+})();
+</script>
+<script>
+/* memory: a 3D brain of the demo memory. Flat, no glow. It never moves on its own:
+   a frame is drawn only when something changes (input, a fly-in, a resize). */
+(function(){
+  var cv = document.getElementById("brain"), src = document.getElementById("brain-data");
+  if (!cv || !cv.getContext || !src) return;
+  var ctx = cv.getContext("2d");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var coarse = window.matchMedia("(pointer: coarse)");
+  var LIGHT = { "Work": [120, 165, 255], "About you": [226, 238, 255], "The team": [120, 225, 210], "Home and money": [255, 225, 110], "Health": [90, 200, 255], "Side projects": [190, 160, 255], "Learning": [255, 150, 70] };
+  var BG = "3,6,12";
+  var SANS = '"IBM Plex Sans", system-ui, sans-serif', MONO = '"IBM Plex Mono", monospace';
+  var topics, dir = {}, N, links, nb, cam, ready = false;
+  var W = 0, H = 0, dpr = 1, SC = 1, narrow = false, cx = 0;
+  var focus = "", sel = -1, hover = -1, rowHover = -1, dive = -1, diveT = 0, lastDive = -1, anim = null, before = null;
+  var engaged = false, listTop = 0, raf = 0;
+  var hits = [], topicHits = [], rows = [], backHit = null, closeHit = null;
+  var ptrs = {}, drag = null, pinch = null, lastType = "";
+
+  function rgb(c, a){ return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+  function mix(c, t){ var w = [214, 232, 255]; return [0, 1, 2].map(function(i){ return Math.round(w[i] * (1 - t) + c[i] * t); }); }
+  function depth(z){ return Math.max(0.35, Math.min(1, 1 - z / 420)); }
+  function name(i){ return N[i].id.replace(/-/g, " "); }
+  function listOn(){ return !!focus && !narrow && dive < 0 && diveT < 0.01; }
+
+  function init(){
+    var g = JSON.parse(src.textContent);
+    topics = g.topics;
+    var T = topics.length;
+    topics.forEach(function(t, i){
+      var y = 1 - (i + 0.5) / T * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996;
+      dir[t] = [Math.cos(a) * r, y * 0.8, Math.sin(a) * r];
+    });
+    var deg = g.nodes.map(function(){ return 0; });
+    g.edges.forEach(function(e){ deg[e[0]]++; deg[e[1]]++; });
+    var s = 99, rnd = function(){ return (s = (s * 16807) % 2147483647) / 2147483647; };
+    N = g.nodes.map(function(n, i){
+      var t = topics[n[1]], d = dir[t];
+      return { id: n[0], topic: t, deg: deg[i], x: d[0] * 150 + (rnd() - 0.5) * 90, y: d[1] * 150 + (rnd() - 0.5) * 90, z: d[2] * 150 + (rnd() - 0.5) * 90, vx: 0, vy: 0, vz: 0 };
+    });
+    links = g.edges;
+    nb = N.map(function(){ return {}; });
+    links.forEach(function(l){ nb[l[0]][l[1]] = 1; nb[l[1]][l[0]] = 1; });
+    /* The layout is worked out once, before the first frame. Nothing moves on its own after. */
+    var alpha = 1;
+    for (var k = 0; k < 420; k++) { step(alpha); alpha *= 0.992; }
+    cam = { yaw: 0.4, pitch: -0.25, k: 1, tx: 0, ty: 0, tz: 0 };
+    ready = true;
+    size();
+    bind();
+    schedule();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  }
+
+  function step(a){
+    var i, j, n;
+    for (i = 0; i < N.length; i++) for (j = i + 1; j < N.length; j++) {
+      var dx = N[j].x - N[i].x, dy = N[j].y - N[i].y, dz = N[j].z - N[i].z, d2 = dx * dx + dy * dy + dz * dz + 0.01;
+      if (d2 > 40000) continue;
+      var f = 900 / d2 * a, d = Math.sqrt(d2);
+      dx /= d; dy /= d; dz /= d;
+      N[i].vx -= dx * f; N[i].vy -= dy * f; N[i].vz -= dz * f; N[j].vx += dx * f; N[j].vy += dy * f; N[j].vz += dz * f;
+    }
+    links.forEach(function(l){
+      var s = N[l[0]], t = N[l[1]];
+      var dx = t.x - s.x, dy = t.y - s.y, dz = t.z - s.z, d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
+      var f = (d - 38) / d * 0.05 * a;
+      s.vx += dx * f; s.vy += dy * f; s.vz += dz * f; t.vx -= dx * f; t.vy -= dy * f; t.vz -= dz * f;
+    });
+    for (i = 0; i < N.length; i++) {
+      n = N[i]; var dd = dir[n.topic];
+      n.vx += (dd[0] * 140 - n.x) * 0.012 * a; n.vy += (dd[1] * 140 - n.y) * 0.012 * a; n.vz += (dd[2] * 140 - n.z) * 0.012 * a;
+      n.vx *= 0.6; n.vy *= 0.6; n.vz *= 0.6; n.x += n.vx; n.y += n.vy; n.z += n.vz;
+    }
+  }
+
+  function size(){
+    var b = cv.getBoundingClientRect();
+    if (!b.width || !b.height) return;
+    W = b.width; H = b.height; narrow = W < 700;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    SC = Math.min(H / 560, W / 620);
+    cx = goalX();
+  }
+  function goalX(){ return listOn() ? (W - 330) / 2 : W / 2; }
+
+  /* On a phone the file card sits under the brain, so the dive lifts the view above it. */
+  function cardLinks(i){ var l = Object.keys(nb[i]).map(Number); return narrow ? l.slice(0, 4) : l; }
+  function cardH(i){ var l = Object.keys(nb[i]).length, shown = cardLinks(i).length; return 64 + (shown + (l > shown ? 1 : 0)) * 22; }
+  function lift(){
+    var dv = dive >= 0 ? dive : lastDive;
+    if (!narrow || dv < 0 || diveT <= 0) return 0;
+    return Math.max(0, H / 2 + 60 - (H - cardH(dv) - 16)) * diveT;
+  }
+
+  function P(n){
+    var c = cam, cy = Math.cos(c.yaw), sy = Math.sin(c.yaw), cp = Math.cos(c.pitch), sp = Math.sin(c.pitch);
+    var X = n.x - c.tx, Y = n.y - c.ty, Z = n.z - c.tz;
+    var x1 = X * cy - Z * sy, z1 = X * sy + Z * cy;
+    var y2 = Y * cp - z1 * sp, z2 = Y * sp + z1 * cp;
+    var s = 620 / Math.max(80, 620 + z2) * c.k * SC;
+    return { x: cx + x1 * s, y: H / 2 - lift() + y2 * s, s: s, z: z2 };
+  }
+
+  /* The site's travel curve, cubic-bezier(0.65, 0, 0.35, 1). */
+  function ease(t){
+    var at = function(a, b, s){ return 3 * a * s * (1 - s) * (1 - s) + 3 * b * s * s * (1 - s) + s * s * s; };
+    var lo = 0, hi = 1;
+    for (var i = 0; i < 22; i++) { var m = (lo + hi) / 2; if (at(0.65, 0.35, m) < t) lo = m; else hi = m; }
+    return at(0, 1, (lo + hi) / 2);
+  }
+
+  /* Draws one frame on the next paint, only when something changed. No loop while idle. */
+  function schedule(){
+    if (raf || !ready) return;
+    raf = requestAnimationFrame(function(){ raf = 0; frame(); });
+  }
+
+  function fly(to, diveTo, ms){
+    var from = { yaw: cam.yaw, pitch: cam.pitch, k: cam.k, tx: cam.tx, ty: cam.ty, tz: cam.tz, d: diveT };
+    var goal = {}, k;
+    for (k in from) goal[k] = from[k];
+    for (k in to) goal[k] = to[k];
+    goal.d = diveTo;
+    if (reduce.matches) { for (k in to) cam[k] = to[k]; diveT = diveTo; anim = null; schedule(); return; }
+    anim = { from: from, goal: goal, t0: performance.now(), ms: ms };
+    schedule();
+  }
+  function diveInto(i){
+    if (i < 0) return;
+    if (dive < 0) before = { yaw: cam.yaw, pitch: cam.pitch, k: cam.k, tx: 0, ty: 0, tz: 0 };
+    var n = N[i];
+    dive = i; sel = -1; rowHover = -1; hover = -1; focus = n.topic;
+    /* Turn a little on the way in, so it reads as travelling into it. */
+    fly({ tx: n.x, ty: n.y, tz: n.z, k: 3.4, yaw: cam.yaw + 0.55, pitch: Math.max(-0.9, Math.min(0.9, cam.pitch * 0.5)) }, 1, 900);
+  }
+  function surface(){
+    if (dive < 0) return;
+    dive = -1;
+    fly(before || { yaw: 0.4, pitch: -0.25, k: 1, tx: 0, ty: 0, tz: 0 }, 0, 700);
+  }
+
+  function frame(){
+    var again = false;
+    if (anim) {
+      var a = anim, t = Math.min(1, (performance.now() - a.t0) / a.ms), e = ease(t);
+      ["yaw", "pitch", "k", "tx", "ty", "tz"].forEach(function(k){ cam[k] = a.from[k] + (a.goal[k] - a.from[k]) * e; });
+      diveT = a.from.d + (a.goal.d - a.from.d) * e;
+      if (t < 1) again = true; else anim = null;
+    }
+    /* The brain slides aside while a topic's list is open (wide screens only). */
+    var goal = goalX();
+    cx = reduce.matches ? goal : cx + (goal - cx) * 0.2;
+    if (Math.abs(goal - cx) < 0.5) cx = goal; else again = true;
+    draw();
+    if (again) schedule();
+  }
+
+  function roundRect(x, y, w, h, r){
+    ctx.beginPath();
+    if (ctx.roundRect) { ctx.roundRect(x, y, w, h, r); return; }
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
+  function draw(){
+    if (!W) return;
+    var x = ctx;
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    x.fillStyle = "rgb(" + BG + ")"; x.fillRect(0, 0, W, H);
+    var D = dive, dt = diveT, F = focus, touch = coarse.matches || lastType === "touch";
+    var S = D >= 0 ? -1 : sel >= 0 ? sel : rowHover;
+    var p = N.map(P);
+    var dv = D >= 0 ? D : lastDive;
+    var kept = function(i){ return dv >= 0 && (i === dv || nb[dv][i]); };
+    var DOT = narrow ? 1.35 : 1;
+
+    links.forEach(function(l){
+      var a = p[l[0]], b = p[l[1]], A = N[l[0]], B = N[l[1]];
+      var lit = S >= 0 && (l[0] === S || l[1] === S);
+      var spoke = dt > 0 && dv >= 0 && (l[0] === dv || l[1] === dv);
+      var inF = F && A.topic === F && B.topic === F;
+      var al = 0.15 * depth((a.z + b.z) / 2);
+      if (F) al = inF ? 0.35 : 0.03;
+      if (S >= 0) al = lit ? 0.9 : al * 0.5;
+      if (dt > 0) al = spoke ? al + (0.75 - al) * dt : al * (1 - dt * 0.94);
+      x.strokeStyle = spoke && dt > 0.05 ? rgb(LIGHT[N[dv].topic], al) : lit ? rgb(LIGHT[N[S].topic], al) : "rgba(226,238,255," + al + ")";
+      x.lineWidth = spoke ? 1 + 0.6 * dt : 1;
+      x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke();
+    });
+
+    var order = N.map(function(n, i){ return i; }).sort(function(i, j){ return p[j].z - p[i].z; });
+    hits = [];
+    order.forEach(function(i){
+      var n = N[i], q = p[i], c = LIGHT[n.topic];
+      var rr = (1.5 + 1.55 * Math.sqrt(n.deg)) * q.s * DOT * (i === dv && dt > 0 ? 1 + 0.6 * dt : 1);
+      var al = depth(q.z), col = mix(c, 0.45);
+      if (F) { if (n.topic === F) { col = mix(c, 0.9); al = 1; } else al = 0.12; }
+      var near = S >= 0 && (i === S || nb[S][i]);
+      if (S >= 0) { if (near) { col = mix(c, 0.95); al = 1; } else al = Math.min(al, F && n.topic === F ? 0.35 : 0.1); }
+      if (dt > 0 && kept(i)) { col = mix(c, 0.95); al = al + (1 - al) * dt; }
+      if (dt > 0 && !kept(i)) al = al * (1 - dt * 0.94);
+      if (al < 0.01) return;
+      x.fillStyle = rgb(col, al);
+      x.beginPath(); x.arc(q.x, q.y, rr, 0, Math.PI * 2); x.fill();
+      if (i === S || (i === dv && dt > 0.05)) {
+        x.lineWidth = 1; x.strokeStyle = "rgba(238,244,252," + (i === dv ? 0.9 * dt : 0.9) + ")";
+        x.beginPath(); x.arc(q.x, q.y, rr + 6, 0, Math.PI * 2); x.stroke();
+      }
+      if (al > 0.2) hits.push({ i: i, x: q.x, y: q.y, r: Math.max(touch ? 16 : 8, rr + 3) });
+    });
+
+    var label = function(i, sz, weight, al, dy){
+      var q = p[i], t = name(i);
+      x.font = weight + " " + sz + "px " + SANS; x.textAlign = "center"; x.textBaseline = "top";
+      x.lineWidth = 3; x.strokeStyle = "rgba(" + BG + "," + al + ")"; x.strokeText(t, q.x, q.y + dy);
+      x.fillStyle = "rgba(238,244,252," + al + ")"; x.fillText(t, q.x, q.y + dy); x.lineWidth = 1;
+    };
+
+    /* Topic names: the only words on the brain at rest. They fade as you dive. */
+    topicHits = [];
+    if ((!F || S < 0) && dt < 0.98) topics.forEach(function(t){
+      var sx = 0, sy = 0, sz = 0, k = 0;
+      N.forEach(function(n){ if (n.topic === t) { sx += n.x; sy += n.y; sz += n.z; k++; } });
+      var d = dir[t], q = P({ x: sx / k + d[0] * 70, y: sy / k + d[1] * 70, z: sz / k + d[2] * 70 });
+      var on = !F || F === t, fa = 1 - dt, fs = narrow ? 12.5 : 14;
+      x.font = "500 " + (F === t ? fs + 2 : fs) + "px " + SANS; x.textAlign = "center"; x.textBaseline = "middle";
+      var tw = x.measureText(t).width;
+      x.lineWidth = 4; x.strokeStyle = "rgba(" + BG + "," + fa + ")"; x.strokeText(t, q.x, q.y);
+      x.fillStyle = F === t ? rgb(LIGHT[t], fa) : "rgba(238,244,252," + (on ? Math.max(0.55, depth(q.z)) : 0.3) * fa + ")";
+      x.fillText(t, q.x, q.y); x.lineWidth = 1;
+      if (dt < 0.05) topicHits.push({ t: t, x0: q.x - tw / 2 - 8, x1: q.x + tw / 2 + 8, y0: q.y - 14, y1: q.y + 14 });
+    });
+
+    backHit = null;
+    if (dt > 0.05 && dv >= 0) {
+      /* Inside a note: its name, its links' names around it, and the file as a small card. */
+      Object.keys(nb[dv]).map(Number).forEach(function(i){ label(i, narrow ? 12 : 13, "400", dt, 10); });
+      label(dv, narrow ? 16 : 18, "500", dt, 16);
+      x.globalAlpha = dt;
+      var m = narrow ? 16 : 20, back = "‹ Whole brain";
+      x.font = "400 14px " + SANS; x.textAlign = "left"; x.textBaseline = "middle";
+      var bw = x.measureText(back).width + 28;
+      x.fillStyle = "rgba(4,10,22,.55)"; x.strokeStyle = "rgba(226,238,255,.32)"; x.lineWidth = 1;
+      roundRect(m, m, bw, 44, 22); x.fill(); x.stroke();
+      x.fillStyle = "#eef3fb"; x.fillText(back, m + 14, m + 22);
+      if (D >= 0) backHit = { x0: m, x1: m + bw, y0: m, y1: m + 44 };
+      var all = Object.keys(nb[dv]).map(Number), shown = cardLinks(dv);
+      var cw = Math.min(300, W - 2 * m), ch = cardH(dv), cx0 = W - cw - m, cy0 = H - ch - m;
+      x.fillStyle = "rgba(14,20,34,.86)"; x.strokeStyle = "rgba(255,255,255,.14)";
+      roundRect(cx0, cy0, cw, ch, 16); x.fill(); x.stroke();
+      x.font = "400 12px " + MONO; x.fillStyle = "rgba(143,155,176,1)"; x.textBaseline = "alphabetic";
+      x.fillText(N[dv].id + ".md", cx0 + 18, cy0 + 28);
+      x.font = "400 13px " + MONO; x.fillStyle = "rgba(185,196,214,1)";
+      x.fillText("Links to " + all.length + " files:", cx0 + 18, cy0 + 50);
+      x.fillStyle = rgb(mix(LIGHT[N[dv].topic], 0.6), 1);
+      shown.forEach(function(i, k){ x.fillText("[[" + N[i].id + "]]", cx0 + 18, cy0 + 72 + k * 22); });
+      if (all.length > shown.length) { x.fillStyle = "rgba(143,155,176,1)"; x.fillText("and " + (all.length - shown.length) + " more", cx0 + 18, cy0 + 72 + shown.length * 22); }
+      x.globalAlpha = 1;
+    } else if (S >= 0) label(S, 13, "500", 1, 9);
+    else if (hover >= 0) label(hover, 13, "500", 1, 9);
+
+    /* A topic's notes, beside the brain (wide screens, not while diving). */
+    rows = []; closeHit = null;
+    if (F && D < 0 && dt < 0.01 && !narrow) {
+      var LX = W - 310, list = N.map(function(n, i){ return i; }).filter(function(i){ return N[i].topic === F; })
+        .sort(function(a, b){ return N[b].deg - N[a].deg || (N[a].id < N[b].id ? -1 : 1); });
+      x.textAlign = "left"; x.textBaseline = "alphabetic";
+      x.font = "400 11px " + MONO; x.fillStyle = "rgba(143,155,176,1)"; x.fillText("TOPIC", LX, 44);
+      x.font = "500 22px " + SANS; x.fillStyle = rgb(LIGHT[F], 1); x.fillText(F, LX, 72);
+      x.font = "400 13px " + SANS; x.fillStyle = "rgba(185,196,214,1)"; x.fillText(list.length + " notes, biggest dots first. Click one to dive in.", LX, 94);
+      x.font = "400 12px " + MONO; x.fillStyle = "rgba(185,196,214,.9)"; x.textAlign = "right"; x.fillText("× close", W - 24, 44); x.textAlign = "left";
+      closeHit = { x0: W - 90, x1: W - 16, y0: 28, y1: 52 };
+      var top = 116, rowH = 32, maxRows = Math.floor((H - top - 20) / rowH);
+      listTop = Math.max(0, Math.min(Math.max(0, list.length - maxRows), listTop));
+      list.slice(listTop, listTop + maxRows).forEach(function(i, k){
+        var y = top + k * rowH + rowH / 2, n = N[i], on = i === S;
+        if (on) { x.fillStyle = "rgba(255,255,255,.06)"; x.fillRect(LX - 10, y - rowH / 2, 296, rowH); }
+        var d = 2 + 1.5 * Math.sqrt(n.deg);
+        x.fillStyle = rgb(mix(LIGHT[F], 0.9), 1); x.beginPath(); x.arc(LX + 8, y, d, 0, Math.PI * 2); x.fill();
+        x.textBaseline = "middle"; x.font = (on ? "500" : "400") + " 14px " + SANS; x.fillStyle = "#eef3fb"; x.fillText(name(i), LX + 26, y);
+        x.textAlign = "right"; x.font = "400 11.5px " + MONO; x.fillStyle = "rgba(185,196,214,.85)"; x.fillText(n.deg + " links", W - 24, y); x.textAlign = "left";
+        rows.push({ i: i, y0: y - rowH / 2, y1: y + rowH / 2 });
+      });
+    }
+
+    if (!(narrow && dt > 0.05)) {
+      x.textAlign = "left"; x.textBaseline = "alphabetic"; x.font = "400 " + (narrow ? 12 : 12.5) + "px " + SANS; x.fillStyle = "rgba(185,196,214,.8)";
+      x.fillText(D >= 0 ? (touch ? "Drag to look around · tap a linked file to dive on" : "Drag to look around · click a linked file to dive on")
+        : engaged ? (touch ? "Drag to turn it · pinch to zoom · tap a dot" : "Drag to turn it · scroll to zoom · click a topic or a dot")
+        : (touch ? "Tap a dot to look inside. Bigger dots link to more files." : "Click to explore. Bigger dots link to more files."), narrow ? 16 : 20, H - (narrow ? 16 : 18));
+    }
+    if (D >= 0) lastDive = D; else if (dt < 0.01) lastDive = -1;
+  }
+
+  function engage(on){
+    if (engaged === on) return;
+    engaged = on;
+    /* Until the brain is tapped into, a vertical swipe still scrolls the page. */
+    cv.style.touchAction = on ? "none" : "";
+    schedule();
+  }
+
+  function bind(){
+    var pos = function(e){ var b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * W / b.width, (e.clientY - b.top) * H / b.height]; };
+    var inBox = function(q, h){ return h && q[0] >= h.x0 && q[0] <= h.x1 && q[1] >= h.y0 && q[1] <= h.y1; };
+    var inList = function(q){ return listOn() && q[0] > W - 330; };
+    var nodeAt = function(q){ var best = -1, bd = 1e9; hits.forEach(function(h){ var d = Math.hypot(h.x - q[0], h.y - q[1]); if (d < h.r && d < bd) { bd = d; best = h.i; } }); return best; };
+    var topicAt = function(q){ for (var i = 0; i < topicHits.length; i++) if (inBox(q, topicHits[i])) return topicHits[i].t; return ""; };
+    var rowAt = function(q){ for (var i = 0; i < rows.length; i++) if (q[1] >= rows[i].y0 && q[1] < rows[i].y1) return rows[i]; return null; };
+    var count = function(){ return Object.keys(ptrs).length; };
+    var spread = function(){ var k = Object.keys(ptrs), a = ptrs[k[0]], b = ptrs[k[1]]; return Math.hypot(a[0] - b[0], a[1] - b[1]) || 1; };
+
+    cv.addEventListener("pointerdown", function(e){
+      lastType = e.pointerType;
+      engage(true);
+      var q = pos(e);
+      ptrs[e.pointerId] = q;
+      try { cv.setPointerCapture(e.pointerId); } catch (err) {}
+      if (count() === 2) { pinch = { d: spread(), k: cam.k }; drag = null; return; }
+      drag = { q: q, last: q, moved: false, tol: e.pointerType === "mouse" ? 3 : 8 };
+    });
+    cv.addEventListener("pointermove", function(e){
+      var q = pos(e);
+      if (ptrs[e.pointerId]) ptrs[e.pointerId] = q;
+      if (pinch && count() >= 2) {
+        if (!anim) { cam.k = Math.max(0.55, Math.min(5, pinch.k * spread() / pinch.d)); schedule(); }
+        return;
+      }
+      if (drag) {
+        var d = drag, dx = q[0] - d.last[0], dy = q[1] - d.last[1];
+        if (Math.hypot(q[0] - d.q[0], q[1] - d.q[1]) > d.tol) d.moved = true;
+        /* It turns only while it is dragged, and stops the moment it is let go. */
+        if (d.moved && !inList(d.q) && !anim) { cam.yaw += dx * 0.006; cam.pitch = Math.max(-1.3, Math.min(1.3, cam.pitch + dy * 0.006)); schedule(); }
+        d.last = q; return;
+      }
+      if (e.pointerType !== "mouse") return;
+      var was = hover + ":" + rowHover;
+      if (inList(q)) { var row = rowAt(q); rowHover = row ? row.i : -1; hover = -1; cv.style.cursor = row ? "pointer" : "default"; }
+      else {
+        rowHover = -1;
+        var at = nodeAt(q);
+        hover = dive >= 0 ? -1 : at;
+        var overDive = dive >= 0 && (inBox(q, backHit) || (at >= 0 && nb[dive][at]));
+        cv.style.cursor = hover >= 0 || topicAt(q) || overDive ? "pointer" : engaged ? "grab" : "pointer";
+      }
+      if (was !== hover + ":" + rowHover) schedule();
+    });
+    var end = function(e){
+      delete ptrs[e.pointerId];
+      if (pinch) { if (count() < 2) pinch = null; drag = null; return; }
+      var d = drag; drag = null;
+      return d;
+    };
+    cv.addEventListener("pointercancel", function(e){ end(e); });
+    cv.addEventListener("pointerup", function(e){
+      var q = pos(e), d = end(e);
+      if (!d || d.moved || anim) return;
+      schedule();
+      if (dive >= 0) {
+        if (inBox(q, backHit)) { surface(); return; }
+        var j = nodeAt(q);
+        if (j >= 0 && nb[dive][j]) diveInto(j);
+        return;
+      }
+      if (focus && inBox(q, closeHit)) { focus = ""; sel = -1; return; }
+      if (inList(q)) { var row = rowAt(q); if (row) diveInto(row.i); return; }
+      var t = topicAt(q);
+      if (t) { focus = focus === t ? "" : t; sel = -1; listTop = 0; return; }
+      var i = nodeAt(q);
+      if (i >= 0) { diveInto(i); return; }
+      if (sel >= 0) sel = -1; else if (focus) focus = "";
+    });
+    cv.addEventListener("pointerleave", function(e){
+      if (e.pointerType === "mouse" && (hover >= 0 || rowHover >= 0)) { hover = -1; rowHover = -1; schedule(); }
+    });
+    /* Clicking anywhere outside the brain hands the scroll wheel back to the page. */
+    document.addEventListener("pointerdown", function(e){ if (e.target !== cv) engage(false); });
+    document.addEventListener("keydown", function(e){
+      if (e.key !== "Escape" || (!engaged && dive < 0 && !focus && document.activeElement !== cv)) return;
+      if (dive >= 0) surface(); else { sel = -1; focus = ""; }
+      engage(false); schedule();
+    });
+    cv.addEventListener("keydown", function(e){
+      var k = e.key, turn = 0.12;
+      if (anim) return;
+      if (k === "ArrowLeft") cam.yaw -= turn;
+      else if (k === "ArrowRight") cam.yaw += turn;
+      else if (k === "ArrowUp") cam.pitch = Math.max(-1.3, cam.pitch - turn);
+      else if (k === "ArrowDown") cam.pitch = Math.min(1.3, cam.pitch + turn);
+      else if (k === "+" || k === "=") cam.k = Math.min(5, cam.k * 1.15);
+      else if (k === "-" || k === "_") cam.k = Math.max(0.55, cam.k / 1.15);
+      else return;
+      e.preventDefault(); schedule();
+    });
+    cv.addEventListener("wheel", function(e){
+      /* The page keeps its scroll until the brain is clicked into; a trackpad pinch always zooms. */
+      if (!engaged && !e.ctrlKey) return;
+      e.preventDefault();
+      if (anim) return;
+      var q = pos(e);
+      if (inList(q)) { listTop += Math.sign(e.deltaY); schedule(); return; }
+      cam.k = Math.max(0.55, Math.min(5, cam.k * Math.exp(-e.deltaY * 0.0015)));
+      schedule();
+    }, { passive: false });
+    if ("ResizeObserver" in window) new ResizeObserver(function(){ size(); schedule(); }).observe(cv);
+    else window.addEventListener("resize", function(){ size(); schedule(); });
+    if (coarse.addEventListener) coarse.addEventListener("change", schedule);
+  }
+
+  /* The layout is worked out only when the section comes near, so the page loads as fast as before. */
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting) { io.disconnect(); init(); } }, { rootMargin: "600px 0px" });
+    io.observe(cv);
+  } else init();
 })();
 </script>
 </body>
